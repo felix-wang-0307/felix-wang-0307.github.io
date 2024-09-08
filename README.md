@@ -1,2 +1,2 @@
-# usc-csci571.github.io
-The repository hosting the web projects of CSCI 571, USC
+# felix-wang-0307.github.io
+Felix Wang's Github Pages
