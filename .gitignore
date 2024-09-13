@@ -134,3 +134,4 @@ dist
 
 # certain pdfs
 /usc-csci-571/*.pdf
+*.zip
