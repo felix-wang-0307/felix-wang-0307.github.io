@@ -140,3 +140,6 @@ dist
 venv
 .venv
 env
+
+# Pycharm files
+.idea
