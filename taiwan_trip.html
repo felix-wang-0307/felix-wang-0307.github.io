@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台湾 14 天深度环岛之旅</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1a2e;--paper:#f7f3ee;--red:#c0392b;--red-light:#f9e8e6;--gold:#b8860b;--gold-light:#fdf3dc;--teal:#1a6b6b;--teal-light:#e0f0ef;--pine:#2d6a4f;--pine-light:#e8f5ef;--slate:#2c3e6b;--slate-light:#e8ecf7;--warm-gray:#8a8070;--line:rgba(26,26,46,0.10)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans SC',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse 80% 60% at 10% 20%,rgba(192,57,43,.06) 0%,transparent 60%),radial-gradient(ellipse 70% 50% at 90% 80%,rgba(26,107,107,.07) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 50% 50%,rgba(184,134,11,.04) 0%,transparent 70%)}
+.hero{position:relative;padding:60px 24px 50px;text-align:center;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.hero-title{font-family:'Playfair Display','Noto Serif SC',serif;font-size:clamp(2rem,6vw,3.6rem);font-weight:700;line-height:1.2;color:var(--ink);letter-spacing:-.5px}
+.hero-title em{font-style:italic;color:var(--red)}
+.hero-sub{margin-top:14px;font-size:clamp(.8rem,2.2vw,1rem);color:var(--warm-gray);letter-spacing:.5px;font-weight:300}
+.hero-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:22px}
+.badge{padding:5px 14px;border-radius:99px;font-size:.78rem;font-weight:500;border:1px solid var(--line);background:white;color:var(--ink);letter-spacing:.3px;cursor:pointer;text-decoration:none;transition:background .18s,transform .15s,box-shadow .15s;display:inline-block}
+.badge:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.1)}
+.badge.warn{background:var(--gold-light);border-color:var(--gold);color:var(--gold);cursor:default}
+.badge.warn:hover{transform:none;box-shadow:none}
+.badge.teaser{background:linear-gradient(135deg,#1a3a5c,#2e6b8a);color:white;border-color:transparent;font-style:italic;letter-spacing:.6px}
+.badge.teaser:hover{box-shadow:0 4px 18px rgba(26,58,92,.35)}
+.season-bar{margin:0 auto 40px;max-width:860px;padding:14px 20px;border-radius:12px;background:var(--gold-light);border-left:4px solid var(--gold);font-size:.88rem;line-height:1.6;color:#5a4500;display:flex;align-items:flex-start;gap:10px}
+.season-bar .icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.container{max-width:860px;margin:0 auto;padding:0 16px 80px}
+.section-label{display:flex;align-items:center;gap:12px;margin:40px 0 16px;font-family:'Noto Serif SC',serif;font-size:1.05rem;font-weight:700;color:var(--warm-gray);letter-spacing:1px;scroll-margin-top:20px}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.day-card{display:grid;grid-template-columns:56px 1fr;gap:0 16px;margin-bottom:14px;opacity:0;transform:translateY(18px);animation:rise .5s ease forwards}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+.day-card:nth-child(1){animation-delay:.05s}.day-card:nth-child(2){animation-delay:.10s}.day-card:nth-child(3){animation-delay:.15s}.day-card:nth-child(4){animation-delay:.20s}.day-card:nth-child(5){animation-delay:.25s}.day-card:nth-child(6){animation-delay:.30s}.day-card:nth-child(7){animation-delay:.35s}.day-card:nth-child(8){animation-delay:.40s}.day-card:nth-child(9){animation-delay:.45s}.day-card:nth-child(10){animation-delay:.50s}.day-card:nth-child(11){animation-delay:.55s}.day-card:nth-child(12){animation-delay:.60s}.day-card:nth-child(13){animation-delay:.65s}.day-card:nth-child(14){animation-delay:.70s}.day-card:nth-child(15){animation-delay:.75s}
+.day-num{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:14px}
+.day-circle{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:.88rem;font-weight:700;color:white;flex-shrink:0}
+.day-line{width:2px;flex:1;min-height:20px;background:linear-gradient(180deg,var(--line) 0%,transparent 100%);margin-top:6px}
+.day-body{background:white;border-radius:14px;border:1px solid var(--line);padding:14px 18px 16px;box-shadow:0 2px 12px rgba(0,0,0,.04);cursor:pointer;transition:box-shadow .2s,transform .2s}
+.day-body:hover{box-shadow:0 6px 28px rgba(0,0,0,.10);transform:translateY(-2px)}
+.day-body:hover .open-hint{opacity:1}
+.day-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.day-region{font-family:'Noto Serif SC',serif;font-size:.92rem;font-weight:700;color:var(--ink);flex:1}
+.day-stay{font-size:.72rem;font-weight:500;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.open-hint{font-size:.68rem;color:var(--warm-gray);margin-left:auto;opacity:.4;transition:opacity .2s;white-space:nowrap;flex-shrink:0}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:2px}
+.slot{border-radius:8px;padding:8px 10px;font-size:.78rem;line-height:1.5}
+.slot-label{font-size:.63rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:3px;opacity:.55}
+.slot-text{font-weight:400;color:var(--ink)}
+.transport-row{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:.74rem;color:var(--warm-gray);display:flex;align-items:center;gap:6px}
+.t-icon{font-size:.9rem}
+.highlight-pill{display:inline-block;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;padding:1px 7px;font-size:.7rem;font-weight:600;margin-left:4px}
+.theme-taipei{--c:var(--pine);--cl:var(--pine-light)}.theme-jiufen{--c:var(--gold);--cl:var(--gold-light)}.theme-hualien{--c:var(--teal);--cl:var(--teal-light)}.theme-taichung{--c:var(--gold);--cl:var(--gold-light)}.theme-sunmoon{--c:var(--teal);--cl:var(--teal-light)}.theme-alishan{--c:var(--pine);--cl:var(--pine-light)}.theme-tainan{--c:var(--red);--cl:var(--red-light)}.theme-kaohsiung{--c:var(--slate);--cl:var(--slate-light)}.theme-kenting{--c:#1a6b8a;--cl:#d6eef5}.theme-back{--c:var(--pine);--cl:var(--pine-light)}
+.day-card .day-circle{background:var(--c)}.day-card .day-stay{background:var(--cl);color:var(--c);border:1px solid var(--c)}.day-card .slot{background:var(--cl)}.day-card .slot-label{color:var(--c)}
+.drawer-overlay{position:fixed;inset:0;z-index:100;background:rgba(26,26,46,.38);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s}
+.drawer-overlay.active{opacity:1;pointer-events:all}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:101;width:min(500px,100vw);background:#fff;box-shadow:-8px 0 40px rgba(0,0,0,.14);transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden}
+.drawer.active{transform:translateX(0)}
+.drawer-header{padding:20px 20px 16px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:12px;flex-shrink:0}
+.drawer-day-badge{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:white;flex-shrink:0}
+.drawer-title-block{flex:1}
+.drawer-title{font-family:'Noto Serif SC',serif;font-size:1.05rem;font-weight:700;color:var(--ink);line-height:1.35}
+.drawer-subtitle{font-size:.78rem;color:var(--warm-gray);margin-top:3px}
+.drawer-close{background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--warm-gray);padding:2px 6px;border-radius:6px;transition:background .15s;flex-shrink:0}
+.drawer-close:hover{background:#f0f0f0}
+.drawer-body{flex:1;overflow-y:auto;padding:20px}
+.dtl-item{display:flex;gap:14px;margin-bottom:20px}
+.dtl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:36px}
+.dtl-dot{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;border:2px solid var(--line);background:white}
+.dtl-vline{width:2px;flex:1;min-height:12px;background:var(--line);margin-top:4px}
+.dtl-right{flex:1;padding-top:4px}
+.dtl-time{font-size:.68rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px}
+.dtl-name{font-size:.92rem;font-weight:600;color:var(--ink);margin-bottom:5px;line-height:1.35}
+.dtl-desc{font-size:.81rem;color:#555;line-height:1.65}
+.dtl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.dtl-tag{font-size:.68rem;font-weight:500;padding:2px 9px;border-radius:99px;background:var(--cl,#f0f0f0);color:var(--c,#555);border:1px solid rgba(0,0,0,.07)}
+.dtl-tip{margin-top:8px;padding:10px 14px;border-radius:8px;background:var(--gold-light);border-left:3px solid var(--gold);font-size:.8rem;color:#5a4500;line-height:1.6}
+.footer{text-align:center;padding:28px 16px 48px;font-size:.8rem;color:var(--warm-gray);border-top:1px solid var(--line)}
+.footer strong{color:var(--ink)}
+@media(max-width:540px){.hero{padding:44px 16px 40px}.slots{grid-template-columns:1fr;gap:6px}.day-card{grid-template-columns:44px 1fr;gap:0 10px}.day-circle{width:38px;height:38px;font-size:.8rem}.day-body{padding:12px 14px 14px}.open-hint{display:none}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1 class="hero-title">台湾 <em>14</em> 天<br>深度环岛之旅</h1>
+  <p class="hero-sub">台北进 · 台北出 &nbsp;｜&nbsp; 北部 → 中部 → 南部 → 最南端</p>
+  <div class="hero-badges">
+    <a class="badge" href="#sec-taipei">🏙 台北 4天</a>
+    <a class="badge" href="#sec-taichung">🎨 台中 2天</a>
+    <a class="badge" href="#sec-sunmoon">🌊 日月潭 1天</a>
+    <a class="badge" href="#sec-alishan">🌲 阿里山 1天</a>
+    <a class="badge" href="#sec-tainan">🏯 台南 2天</a>
+    <a class="badge" href="#sec-kaohsiung">🌆 高雄 2天</a>
+    <a class="badge" href="#sec-kenting">🏖 垦丁 2天</a>
+    <a class="badge teaser" href="#sec-teaser">🗺️ 下次 · 东海岸</a>
+    <span class="badge warn">☂️ 5–6月注意梅雨</span>
+  </div>
+</div>
+<div class="container">
+<div class="season-bar"><span class="icon">🌦</span><span><strong>5–6月出行提示：</strong>气温舒适（22–30°C），阿里山云海和日月潭晨雾最美。梅雨季（5月中–6月）北部雨多，九份潮湿，带伞必备。垦丁5–6月正值浮潜旺季，海水清澈透明，是戏水绝佳时节。建议优先选 <strong>5月上中旬</strong>出发。</span></div>
+
+<div class="section-label" id="sec-taipei">第一站 · 台北 &amp; 近郊</div>
+
+<div class="day-card theme-taipei" onclick="openDrawer('d1')">
+  <div class="day-num"><div class="day-circle">D1</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🏙 台北</span><span class="day-stay">住：台北·西门町／信义区</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">抵台·办理入住<br>西门町逛街</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">中正纪念堂<br>整点卫兵交接</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">宁夏夜市<br>台湾小吃初体验</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚇</span> 机场捷运直达台北车站</div>
+  </div>
+</div>
+
+<div class="day-card theme-taipei" onclick="openDrawer('d2')">
+  <div class="day-num"><div class="day-circle">D2</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🏙 台北</span><span class="day-stay">住：台北·西门町／信义区</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">故宫博物院<br>翠玉白菜·肉形石</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">大安森林公园<br>信义区·Taipei 101</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">饶河街夜市<br>胡椒饼·药炖排骨</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚇</span> 捷运 MRT 全日通行</div>
+  </div>
+</div>
+
+<div class="day-card theme-taipei" onclick="openDrawer('d3')">
+  <div class="day-num"><div class="day-circle">D3</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🏙 台北</span><span class="day-stay">住：台北·西门町／信义区</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">阳明山国家公园<br>硫磺温泉·七星山</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">象山步道<br>俯瞰台北全景</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">象山看101夜景<br>师大夜市</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚌</span> 公交+捷运</div>
+  </div>
+</div>
+
+<div class="day-card theme-jiufen" onclick="openDrawer('d4')">
+  <div class="day-num"><div class="day-circle">D4</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🏔 九份 · 平溪</span><span class="day-stay">住：台北（返回）</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">平溪老街·十分<br>放天灯许愿 🪔</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">九份老街<br>红灯笼·茶馆</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">九份夜景留影<br>返回台北</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚆</span> 台铁瑞芳站转客运</div>
+  </div>
+</div>
+
+<div class="section-label" id="sec-taichung">第二站 · 台中</div>
+
+<div class="day-card theme-taichung" onclick="openDrawer('d5')">
+  <div class="day-num"><div class="day-circle">D5</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🎨 台中</span><span class="day-stay">住：台中·逢甲／一中街</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">高铁抵台中<br>彩虹眷村</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">宫原眼科冰淇淋<br>柳川水岸散步</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">逢甲夜市<br>台湾最大夜市</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚄</span> 高铁台北→台中 约1小时</div>
+  </div>
+</div>
+
+<div class="day-card theme-taichung" onclick="openDrawer('d6')">
+  <div class="day-num"><div class="day-circle">D6</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🎨 台中 → 🌊 日月潭</span><span class="day-stay">住：日月潭·湖畔民宿 ⭐</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">自然科学博物馆<br>第二市场午餐</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">南投客运出发<br>约1.5小时</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">抵日月潭<br>湖边夜晚散步</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚌</span> 南投客运 约1.5小时</div>
+  </div>
+</div>
+
+<div class="section-label" id="sec-sunmoon">第三站 · 日月潭</div>
+
+<div class="day-card theme-sunmoon" onclick="openDrawer('d7')">
+  <div class="day-num"><div class="day-circle">D7</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🌊 日月潭</span><span class="day-stay">住：日月潭·湖畔民宿 ⭐</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">清晨骑车环湖<br>文武庙·伊达邵</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">乘船游湖<br>光华岛·玄光寺</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">湖畔夕阳<br>原住民风味晚餐</div></div></div>
+    <div class="transport-row"><span class="t-icon">⛵</span> 游船联票约300台币</div>
+  </div>
+</div>
+
+<div class="section-label" id="sec-alishan">第四站 · 阿里山</div>
+
+<div class="day-card theme-alishan" onclick="openDrawer('d8')">
+  <div class="day-num"><div class="day-circle">D8</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🌊 日月潭 → 🌲 阿里山</span><span class="day-stay">住：阿里山·山上木屋 ⚠️提前订</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">清晨骑车环湖<br>文武庙·伊达邵</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">乘船游湖<br>下午出发阿里山</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">抵阿里山<br>森林初体验</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚌</span> 南投客运 → 嘉义转阿里山客运</div>
+  </div>
+</div>
+
+<div class="day-card theme-tainan" onclick="openDrawer('d9')">
+  <div class="day-num"><div class="day-circle">D9</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🌲 阿里山 → 🏯 台南</span><span class="day-stay">住：台南·赤崁楼周边</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">清晨 4:30</div><div class="slot-text">🌅 日出云海<span class="highlight-pill">必看！</span></div></div><div class="slot"><div class="slot-label">上午</div><div class="slot-text">神木步道<br>姐妹潭·受镇宫</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">客运下山<br>抵台南安顿</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚌</span> 客运 → 嘉义 → 台南（约2.5h）</div>
+  </div>
+</div>
+
+<div class="section-label" id="sec-tainan">第五站 · 台南 · 千年古都</div>
+
+<div class="day-card theme-tainan" onclick="openDrawer('d10')">
+  <div class="day-num"><div class="day-circle">D10</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🏯 台南</span><span class="day-stay">住：台南·赤崁楼周边</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">安平古堡<br>荷兰400年历史</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">安平老街<br>虱目鱼粥·棺材板</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">花园夜市<br>神农街点灯</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚲</span> 租自行车 / 步行</div>
+  </div>
+</div>
+
+<div class="day-card theme-kaohsiung" onclick="openDrawer('d11')">
+  <div class="day-num"><div class="day-circle">D11</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🏯 台南 → 🌆 高雄</span><span class="day-stay">住：高雄·盐埕／美丽岛</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">赤崁楼·孔庙<br>文化巷弄漫步</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">高铁至高雄<br>驳二艺术特区</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">六合夜市<br>鲜虾·木瓜牛奶</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚄</span> 高铁台南→高雄 约30分钟</div>
+  </div>
+</div>
+
+<div class="section-label" id="sec-kaohsiung">第六站 · 高雄 · 港都</div>
+
+<div class="day-card theme-kaohsiung" onclick="openDrawer('d12')">
+  <div class="day-num"><div class="day-circle">D12</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🌆 高雄</span><span class="day-stay">住：高雄·盐埕／美丽岛</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">莲池潭<br>龙虎塔·道教文化</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">旗津岛渡轮<br>骑车+海景</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">美丽岛站<br>彩色玻璃穹顶 ✨</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚇</span> 捷运 + ⛴ 渡轮</div>
+  </div>
+</div>
+
+<div class="day-card theme-kaohsiung" onclick="openDrawer('d13')">
+  <div class="day-num"><div class="day-circle">D13</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🌆 高雄</span><span class="day-stay">住：高雄·盐埕／美丽岛</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">驳二艺术特区<br>装置艺术漫游</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">爱河畔散步<br>光荣码头夕阳</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">六合夜市<br>木瓜牛奶·海产</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚇</span> 捷运 + YouBike</div>
+  </div>
+</div>
+
+<div class="section-label" id="sec-kenting">第七站 · 垦丁 · 台湾最南端</div>
+
+<div class="day-card theme-kenting" onclick="openDrawer('d14')">
+  <div class="day-num"><div class="day-circle">D14</div><div class="day-line"></div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🌆 高雄 → 🏖 垦丁</span><span class="day-stay">住：垦丁大街附近</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">高雄出发<br>包车赴垦丁约1.5h</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">南湾戏水浮潜<br>鹅銮鼻灯塔</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">垦丁大街夜市<br>野猪肉饭盒必吃</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚌</span> 高雄左营搭客运或包车（约1.5小时）</div>
+  </div>
+</div>
+
+<div class="day-card theme-kenting" onclick="openDrawer('d15')">
+  <div class="day-num"><div class="day-circle">D15</div></div>
+  <div class="day-body">
+    <div class="day-header"><span class="day-region">🏖 垦丁 → ✈️ 返台北</span><span class="day-stay">当日返程</span><span class="open-hint">点击查看详情 →</span></div>
+    <div class="slots"><div class="slot"><div class="slot-label">上午</div><div class="slot-text">龙坑生态区<br>珊瑚礁地形漫步</div></div><div class="slot"><div class="slot-label">下午</div><div class="slot-text">客运返高雄<br>搭高铁北上台北</div></div><div class="slot"><div class="slot-label">晚上</div><div class="slot-text">前往机场<br>返程航班 ✈️</div></div></div>
+    <div class="transport-row"><span class="t-icon">🚄</span> 垦丁客运→高雄左营→高铁→机场捷运</div>
+  </div>
+</div>
+
+<div class="section-label" id="sec-teaser" style="margin-top:50px;color:#1a3a5c;opacity:.7">下次的悬念 · 东海岸未竟之旅</div>
+
+<div style="max-width:860px;margin:0 auto 40px;padding:24px 28px;border-radius:16px;background:linear-gradient(135deg,#0d2137 0%,#1a3a5c 50%,#1a6b8a 100%);color:white;position:relative;overflow:hidden">
+  <div style="position:absolute;right:-20px;top:-20px;font-size:8rem;opacity:.08;pointer-events:none">🗺️</div>
+  <div style="font-family:'Noto Serif SC',serif;font-size:1.1rem;font-weight:700;margin-bottom:10px;letter-spacing:.5px">花莲 · 太鲁阁 · 东海岸公路</div>
+  <div style="font-size:.85rem;line-height:1.8;opacity:.88">这次我们选择了西海岸的从容与丰盛，把台湾东部那条最美的风景线留给了下一次。<br>太鲁阁的大理石峡谷、七星潭的砾石海湾、清水断崖的垂直壮阔……<br>都在等着你。<strong style="opacity:1;font-style:italic">下次，我们走东岸。</strong></div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px">
+    <span style="padding:3px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.3);font-size:.72rem;opacity:.8">🏔 太鲁阁峡谷</span>
+    <span style="padding:3px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.3);font-size:.72rem;opacity:.8">🌊 七星潭</span>
+    <span style="padding:3px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.3);font-size:.72rem;opacity:.8">🏞 清水断崖</span>
+    <span style="padding:3px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.3);font-size:.72rem;opacity:.8">🚆 环岛铁路东线</span>
+    <span style="padding:3px 12px;border-radius:99px;border:1px solid rgba(255,255,255,.3);font-size:.72rem;opacity:.8">🪔 平溪天灯（再访）</span>
+  </div>
+</div>
+</div>
+
+<div class="footer"><p>💡 <strong>实用贴士</strong>：买悠游卡全台通用 · 高铁早鸟票享折扣 · 阿里山住宿提前1–2月预订<br>垦丁包车/租摩托车最方便 · 花园夜市仅周四、六、日营业</p></div>
+
+<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header" id="drawer-header">
+    <div class="drawer-day-badge" id="drawer-badge"></div>
+    <div class="drawer-title-block"><div class="drawer-title" id="drawer-title"></div><div class="drawer-subtitle" id="drawer-subtitle"></div></div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</div>
+
+<script>
+const DAYS={d1:{title:'台北 · 抵达日',subtitle:'住：台北 西门町 / 信义区',color:'#2d6a4f',colorLight:'#e8f5ef',items:[{time:'09:00',icon:'✈️',name:'桃园机场抵达',desc:'办理入境手续，购买悠游卡。机场捷运直达台北车站约35分钟，票价160台币。',tags:['机场捷运']},{time:'11:30',icon:'🏨',name:'办理酒店入住',desc:'推荐住西门町步行范围内，交通便捷，周边热闹，方便逛街。'},{time:'13:00',icon:'🍜',name:'午餐：西门町老店',desc:'推荐「阿宗面线」大肠面线或「峰大号鲁肉饭」，台湾家常滋味的第一口。',tags:['必吃']},{time:'14:30',icon:'🏛',name:'中正纪念堂',desc:'台湾最重要的历史地标。整点卫兵交接仪式精确而震撼。周边有自由广场、国家戏剧院。开放09:00–18:00，免费入场。',tags:['免费','历史']},{time:'17:00',icon:'🛍',name:'西门町街区',desc:'台湾年轻文化发源地，有各式潮流服饰、小店、街头表演，氛围热闹。',tags:['购物','街头文化']},{time:'18:00',icon:'🌈',name:'西门町彩虹地标',desc:'位于西门町中华路与成都路口的彩虹斑马线，是台湾骄傲运动的重要象征，也是亚洲最具代表性的 LGBTQ+ 友善地标之一。彩色地面每年台湾同志游行（10月）时人潮最盛，平日也是热门打卡地点，完全免费。周边有多家同志友善酒吧和咖啡馆。',tags:['打卡','免费','文化地标']},{time:'19:00',icon:'🌙',name:'宁夏夜市',desc:'台北最经典的小吃夜市之一。必吃：蚵仔煎（50台币）、猪血糕、杏仁豆腐、芋头汤圆。约1.5小时游逛。',tags:['夜市','必吃']}],tip:'💡 首日时差未调，安排不宜太满。悠游卡在7-11或机场均可购买，全台捷运、公交、便利店通用。'},d2:{title:'台北 · 文化深度游',subtitle:'住：台北 西门町 / 信义区',color:'#2d6a4f',colorLight:'#e8f5ef',items:[{time:'09:00',icon:'🏛',name:'故宫博物院',desc:'全球四大博物馆之一。镇馆之宝「翠玉白菜」「肉形石」「毛公鼎」必看。建议至少留3小时。周一休，其余09:00–17:00（周五六至20:30）。门票350台币。',tags:['必去','历史','艺术']},{time:'12:30',icon:'🍱',name:'午餐：士林商圈',desc:'故宫三希堂餐厅或附近士林商圈觅食。'},{time:'14:00',icon:'🌳',name:'大安森林公园',desc:'台北市最大城市公园，被称为「台北之肺」。捷运大安森林公园站出来即到，免费。周末常有街头音乐演出。',tags:['免费','休闲']},{time:'15:00',icon:'📚',name:'诚品书店 · 信义旗舰店',desc:'台湾最具代表性的文化地标，不只是书店，更是集书籍、艺术、设计品牌、餐饮于一体的文化百货。信义旗舰店（松仁路）24小时营业，建筑本身由日本建筑师设计，木质书架绵延数层，是全球最美书店之一。即使不买书，单纯感受氛围也值回票价。',tags:['文化地标','免费逛','必去']},{time:'15:30',icon:'🏙',name:'信义区 · Taipei 101',desc:'Taipei 101观景台（89楼，票价600台币）可360度俯瞰台北盆地。建议傍晚登高，可同时看日间和夜景过渡。周边有微风广场、新光三越等购物商场。',tags:['地标','购物']},{time:'19:00',icon:'🌙',name:'饶河街夜市',desc:'台北最具代表性的夜市之一。必吃：福州胡椒饼（刚出炉最香）、药炖排骨、蚵仔面线、草仔粿。全长约600米，约1.5小时游逛。捷运松山站步行5分钟。',tags:['夜市','必吃']}],tip:'💡 故宫可提前官网预约，高峰期免排队。悠游卡在超市和便利店随时充值。'},d3:{title:'台北 · 自然与夜景',subtitle:'住：台北 西门町 / 信义区',color:'#2d6a4f',colorLight:'#e8f5ef',items:[{time:'08:30',icon:'🌋',name:'阳明山国家公园',desc:'台北市区北侧的火山国家公园，公交约1小时可达。推荐：七星山步道（台北最高峰，约2小时往返）、大屯自然公园硫磺景观、花钟花圃。天气好时可俯瞰整个台北盆地。',tags:['健行','自然']},{time:'12:00',icon:'🍜',name:'午餐：竹子湖野菜',desc:'竹子湖海拔约800米，当地野菜料理清爽鲜美，推荐各家农家餐厅。'},{time:'14:00',icon:'🚇',name:'返回台北市区',desc:'搭公交S1或9路返回捷运剑潭/士林站。'},{time:'15:30',icon:'⛰',name:'象山步道',desc:'台北最热门城市健行步道，入口位于捷运象山站步行10分钟处。全程约1小时，沿途有「六巨石」观景平台，是拍摄台北101的最佳角度。全程免费，建议穿运动鞋。',tags:['健行','免费','必去']},{time:'17:30',icon:'🌆',name:'象山顶部看夜景',desc:'象山日落时分人潮涌现，太阳落山后101大楼灯光亮起，城市灯海铺展，是台北最经典夜景之一。建议日落前30分钟抵达占位。'},{time:'20:00',icon:'🍺',name:'师大夜市 / 公馆商圈',desc:'以年轻人、大学生文化为主的区域。师大夜市巷弄文青风，有特色小店和异国料理；公馆商圈近台湾大学，夜市丰富，书店林立。',tags:['夜市','文青']},{time:'21:30',icon:'🔮',name:'女巫店',desc:'藏身台大公馆商圈巷弄里的传奇女性主义酒吧，1995年开业至今，是台北独立音乐与性别平权运动的精神据点。店内陈设古朴神秘，有现场民谣演出（多为周末），墙上挂满独立创作者的海报与装置。低消约100台币，来杯手冲咖啡或精酿啤酒，体验台北最有灵魂的夜晚。',tags:['独立音乐','文化酒吧','女性主义']}],tip:'💡 象山建议傍晚5点后出发，既能看日落也能留到夜景。部分石阶路段需穿防滑运动鞋。'},d4:{title:'九份 · 平溪 · 山城一日',subtitle:'当晚返回台北住宿',color:'#b8860b',colorLight:'#fdf3dc',items:[{time:'08:30',icon:'🚆',name:'出发平溪',desc:'从台北车站搭台铁至瑞芳站（约40分钟），转平溪线小火车至十分站（约30分钟）。建议早出发避开人潮。',tags:['台铁']},{time:'10:00',icon:'🪔',name:'十分老街 · 放天灯',desc:'十分最著名活动——在铁路旁放天灯！天灯四面可写愿望，燃放后缓缓升空，十分梦幻。一组天灯约150–200台币。铁路两侧有各式小吃和纪念品。',tags:['必体验','文化']},{time:'11:30',icon:'💦',name:'十分瀑布',desc:'台版「尼亚加拉瀑布」，幕布状瀑布壮观。从十分老街步行约1.5公里，门票80台币，约1小时游览。'},{time:'13:30',icon:'🚌',name:'转战九份',desc:'从十分搭公交或计程车至九份老街约30–40分钟。建议午后到达，既能看白天又能留到傍晚点灯。'},{time:'14:00',icon:'🍵',name:'九份老街 · 阿妹茶楼',desc:'「阿妹茶楼」是传说中神隐少女汤婆婆浴场的原型建筑，坐窗边喝高山茶俯瞰山海红灯笼，约人均300台币起。竖崎路石阶两侧是最具特色的拍摄地点。',tags:['网红打卡','茶文化']},{time:'17:00',icon:'🏮',name:'九份红灯笼夜景',desc:'入夜后九份全部红灯笼亮起，竖崎路石阶两侧灯火通明，台湾最迷人的夜景之一。此时段拍照效果最好，周末人极多尽量避开。'},{time:'19:30',icon:'🚌',name:'返回台北',desc:'从九份搭客运至台北（忠孝复兴或台北车站），约1小时。末班车约22:00，注意不要错过。'}],tip:'💡 九份周末游客极多，建议选周二至周四前往。下雨天气氛更好但石板路湿滑，务必穿防滑鞋。'},d5:{title:'台中 · 抵达与文创',subtitle:'住：台中 逢甲 / 一中街',color:'#b8860b',colorLight:'#fdf3dc',items:[{time:'08:30',icon:'🚄',name:'台北→台中',desc:'搭高铁台北至台中约1小时，票价700台币。抵达台中高铁站后搭公交或计程车前往市区，约30分钟。',tags:['高铁']},{time:'10:30',icon:'🎨',name:'彩虹眷村',desc:'退役老兵黄永阜一人绘制的彩色村落，整片建筑外墙覆盖鲜艳涂鸦，被政府列为文化资产保护。约1小时游览。⚠️周一休息，周二至周日09:00–17:00。',tags:['必去','打卡','免费']},{time:'12:30',icon:'🍦',name:'午餐+宫原眼科',desc:'「宫原眼科」原日据时期眼科诊所改建，华丽的冰淇淋店设计感十足。必吃冰淇淋球（可叠高），排队约15–30分钟，每球约120台币。',tags:['网红','必吃']},{time:'14:30',icon:'🌊',name:'柳川水岸绿廊',desc:'台中市区内的滨水步行道，河道两侧绿树与咖啡馆相映，傍晚时分宁静舒适，适合放慢脚步。',tags:['散步','文青']},{time:'16:30',icon:'☕',name:'审计新村',desc:'废弃宿舍改建的文青园区，小店林立，有设计品牌、手作坊、咖啡馆。与草悟道相连，适合下午慢逛。',tags:['文创','购物']},{time:'19:00',icon:'🌙',name:'逢甲夜市',desc:'台湾规模最大观光夜市，约1,000个摊位。必吃：大肠包小肠、章鱼小丸子、东海豆花、逢甲蛋糕、各式炸物。建议空腹前往，至少逛1.5–2小时。',tags:['夜市','必吃']}],tip:'💡 宫原眼科只卖冰淇淋和伴手礼，不提供正餐。彩虹眷村周一休息，注意行程安排。'},d6:{title:'台中 · 博物馆与出发日月潭',subtitle:'住：日月潭湖畔民宿 ⭐',color:'#b8860b',colorLight:'#fdf3dc',items:[{time:'09:30',icon:'🏛',name:'国立自然科学博物馆',desc:'台湾最大自然科学博物馆，有恐龙厅、植物园温室等。植物园玻璃温室尤为值得一看，门票100台币。',tags:['博物馆','亲子']},{time:'12:00',icon:'🍱',name:'午餐：台中市区',desc:'推荐「第二市场」——1917年日据时期留下的老市场，台中小吃最密集的地方，卤肉饭、山河鱼丸汤、太阳饼伴手礼一条街。',tags:['必吃','历史']},{time:'13:30',icon:'🚌',name:'台中→日月潭',desc:'从台中高铁站搭南投客运6670路直达日月潭水社码头，约1.5小时，票价约215台币。班次约每小时一班。',tags:['南投客运']},{time:'15:00',icon:'⛵',name:'码头游船',desc:'水社码头购买联票（约300台币），乘船游览。停靠水社→玄光码头（慈恩塔）→伊达邵码头，可中途上岸参观再搭下班船。',tags:['游船','必体验']},{time:'17:00',icon:'🏘',name:'伊达邵码头',desc:'邵族原住民聚居地，有原住民风味：总统鱼（奇力鱼）、阿嬷茶叶蛋、烤山猪肉、野菜炒饭。傍晚码头夕阳景色最美。',tags:['原住民文化','必吃']},{time:'19:00',icon:'🌙',name:'入住湖畔民宿',desc:'日月潭最推荐住湖畔景观民宿，清晨可在阳台欣赏云雾绕湖的震撼景色。推荐涵碧楼、日月行馆或实惠的湖畔景观民宿。',tags:['住宿']}],tip:'💡 台中第二市场营业时间为早上至中午，建议上午游览博物馆后顺道吃午饭再出发日月潭。'},d7:{title:'台中 · 文创与夜市',subtitle:'住：台中 逢甲 / 一中街',color:'#b8860b',colorLight:'#fdf3dc',items:[{time:'09:30',icon:'🎨',name:'彩虹眷村',desc:'退役老兵黄永阜一人绘制的彩色村落，整片建筑外墙覆盖鲜艳涂鸦，被政府列为文化资产保护。约1小时游览。⚠️周一休息，周二至周日09:00–17:00。',tags:['必去','打卡','免费']},{time:'11:00',icon:'🏛',name:'国立自然科学博物馆',desc:'台湾最大自然科学博物馆，有恐龙厅、植物园温室等。植物园玻璃温室尤为值得一看，门票100台币。',tags:['博物馆','亲子']},{time:'13:00',icon:'🍦',name:'午餐+宫原眼科',desc:'「宫原眼科」原日据时期眼科诊所改建，华丽的冰淇淋店设计感十足。必吃冰淇淋球（可叠高），排队约15–30分钟，每球约120台币。',tags:['网红','必吃']},{time:'15:00',icon:'🌊',name:'柳川水岸绿廊',desc:'台中市区内的滨水步行道，河道两侧绿树与咖啡馆相映，傍晚时分宁静舒适，适合放慢脚步。',tags:['散步','文青']},{time:'17:00',icon:'☕',name:'审计新村',desc:'废弃宿舍改建的文青园区，小店林立，有设计品牌、手作坊、咖啡馆。与草悟道相连，适合下午慢逛。',tags:['文创','购物']},{time:'19:00',icon:'🌙',name:'逢甲夜市',desc:'台湾规模最大观光夜市，约1,000个摊位。必吃：大肠包小肠、章鱼小丸子、东海豆花、逢甲蛋糕、各式炸物。建议空腹前往，至少逛1.5–2小时。',tags:['夜市','必吃']}],tip:'💡 宫原眼科只卖冰淇淋和伴手礼，不提供正餐。彩虹眷村周一休息，注意行程安排。'},d8:{title:'日月潭 · 湖光山色',subtitle:'住：日月潭湖畔民宿（强烈推荐）',color:'#1a6b6b',colorLight:'#e0f0ef',items:[{time:'09:00',icon:'🏛',name:'台中早上自由活动',desc:'可逛台中市区或直接前往高铁站。'},{time:'13:00',icon:'🚌',name:'台中→日月潭',desc:'从台中高铁站搭南投客运6670路直达日月潭水社码头，约1.5小时，票价约215台币。班次约每小时一班。',tags:['南投客运']},{time:'14:30',icon:'⛵',name:'码头游船',desc:'水社码头购买联票（约300台币），乘船游览。停靠水社→玄光码头（慈恩塔）→伊达邵码头，可中途上岸参观再搭下班船。',tags:['游船','必体验']},{time:'15:30',icon:'⛩',name:'文武庙',desc:'供奉孔子、关羽、岳飞的庙宇，建筑宏伟壮观，位于日月潭北岸山腰。可俯瞰湖面视角极佳。',tags:['文化','宗教']},{time:'17:00',icon:'🏘',name:'伊达邵码头',desc:'邵族原住民聚居地，有原住民风味：总统鱼（奇力鱼）、阿嬷茶叶蛋、烤山猪肉、野菜炒饭。傍晚码头夕阳景色最美。',tags:['原住民文化','必吃']},{time:'19:00',icon:'🌙',name:'入住湖畔民宿',desc:'日月潭最推荐住湖畔景观民宿，清晨可在阳台欣赏云雾绕湖的震撼景色。推荐涵碧楼、日月行馆或实惠的湖畔景观民宿。',tags:['住宿']}],tip:'💡 日月潭最美时刻是清晨5–7点的云雾晨景，住湖畔民宿才能不错过。晚上8点后大部分店铺关闭，注意安排晚餐时间。'},d9:{title:'阿里山日出云海 → 台南',subtitle:'住：台南 赤崁楼周边',color:'#c0392b',colorLight:'#f9e8e6',items:[{time:'04:30',icon:'🌅',name:'祝山观日出',desc:'清晨4:30起床，搭祝山观日铁道车（约150台币）或步行约1.5小时上祝山观日楼。云海上日出冉冉升起，玉山主峰作为背景，震撼程度难以言语。请提前至少1小时抵达占位。',tags:['必看！','一生体验']},{time:'07:00',icon:'🌲',name:'神木群步道',desc:'阿里山最壮观主题步道，沿途经过多株树龄数千年的红桧和扁柏神木。「阿里山神木」（树龄约3,000年）是镇山之宝，沼平车站至神木区约1小时步行。',tags:['步道','历史']},{time:'09:00',icon:'🌸',name:'姐妹潭',desc:'两座相邻高山湖泊，湖畔吊桥与林木倒影如画，是阿里山最上镜地点之一。春季（3–4月）樱花绕湖，景色绝美。',tags:['自然','唯美']},{time:'10:30',icon:'⛩',name:'受镇宫',desc:'阿里山最重要庙宇，供奉玄天上帝。庙宇依山势而建，庙前古老红桧参天，是阿里山的精神中心。',tags:['文化','宗教']},{time:'11:30',icon:'🚌',name:'下山→嘉义→台南',desc:'搭嘉义客运下山（约2.5小时），转台铁或高铁至台南（约40分钟）。全程约3.5–4小时，建议11:30前下山。',tags:['客运+台铁']},{time:'17:00',icon:'🏨',name:'抵台南·安顿入住',desc:'推荐住赤崁楼步行范围内。神农街附近有许多设计型民宿，台南老屋改建风格独特。'},{time:'19:00',icon:'🌙',name:'神农街初探',desc:'台南最具代表性老街，清朝建筑改建为酒吧、咖啡馆，夜晚灯光点亮后气氛迷人，是台南夜生活的最佳入口。',tags:['夜生活','文青']}],tip:'💡 阿里山日出受天气影响较大，阴雨天则无云海。可提前查阿里山气象，春秋晴天概率较高。下山后台南全年偏热，可适当减薄衣物。'},d10:{title:'台南 · 古都全览',subtitle:'住：台南 赤崁楼周边',color:'#c0392b',colorLight:'#f9e8e6',items:[{time:'08:30',icon:'🌅',name:'安平古堡（热兰遮城）',desc:'台湾最古老的欧式城堡，荷兰东印度公司1624年建造，是荷兰统治台湾的历史见证。城堡遗址有博物馆，展示台湾早期历史。门票84台币，开放08:30–17:30。',tags:['必去','历史']},{time:'10:30',icon:'🛍',name:'安平老街',desc:'与安平古堡相邻的历史老街。必买：剑狮风铃、安平豆花。必吃：虱目鱼粥（清淡鲜美）、棺材板（炸吐司盒装浓汤，台南发明）、蚵仔煎（台南版更嫩滑）。',tags:['必吃','购物']},{time:'12:30',icon:'🍜',name:'午餐：国华街小吃一条街',desc:'台南小吃最密集区域，虱目鱼、牛肉汤就在附近。推荐「度小月担仔面」（百年老店）。',tags:['必吃']},{time:'14:00',icon:'🏯',name:'赤崁楼（普罗民遮城）',desc:'荷兰1653年建造的行政中心，后被郑成功占领。庭院内有9座清朝「石龟驮碑」，是台湾历史重要物证。门票84台币，开放08:30–21:00。',tags:['必去','历史']},{time:'15:30',icon:'⛩',name:'台南孔庙 · 文化街区',desc:'台湾第一座孔庙（1665年建），被称为「全台首学」。孔庙周边府中街、正兴街有大量文青小店、选物店、特色咖啡馆，是台南文化精华所在。',tags:['文化','文青']},{time:'18:00',icon:'🌙',name:'花园夜市',desc:'台湾规模最大夜市之一，仅周四、六、日营业，约1,000个摊位。推荐：台南盐酥鸡、木瓜牛奶、香肠熟肉、芒果冰。',tags:['夜市','⚠️仅四六日']}],tip:'💡 台南小吃建议「少量多样」策略，每样点小份。国华街和正兴街步行范围内可解决三餐，不需要打车。'},d11:{title:'台南尾声 → 高雄',subtitle:'住：高雄 盐埕 / 美丽岛',color:'#2c3e6b',colorLight:'#e8ecf7',items:[{time:'09:00',icon:'🏯',name:'赤崁楼周边清晨',desc:'清晨的赤崁楼游客极少，是拍照的最佳时机。步行可到孔庙附近，感受与夜晚截然不同的台南清晨气质。'},{time:'10:00',icon:'⛩',name:'延平郡王祠',desc:'供奉郑成功的庙宇，是台湾对郑成功最重要的纪念场所。建筑融合中日风格，庭院清幽，免费参观。',tags:['免费','历史']},{time:'11:30',icon:'🚄',name:'台南→高雄',desc:'搭高铁或台铁至高雄（约30–40分钟）。抵达后先放行李入住。',tags:['高铁']},{time:'13:30',icon:'🎨',name:'驳二艺术特区',desc:'高雄最具活力文创园区，由废弃港口仓库改建。有大型装置艺术、涂鸦墙、独立品牌、咖啡馆，也是单车道重要枢纽。免费进入，部分展览收费。',tags:['必去','文创','免费']},{time:'15:30',icon:'🌉',name:'爱河畔散步',desc:'高雄的母亲河。爱河两岸有步行道和咖啡馆，傍晚可看高雄85大楼倒映水面。附近有光荣码头，可乘爱之船游河。',tags:['散步','景观']},{time:'19:00',icon:'🌙',name:'六合夜市',desc:'高雄最著名夜市，位于捷运美丽岛站步行5分钟处。必吃：木瓜牛奶（高雄版最正宗）、海产粥、烤玉米、生炒花枝。约1小时游逛。',tags:['夜市','必吃']}],tip:'💡 高雄YouBike共享单车发达，结合捷运是最经济出行方式。悠游卡可直接刷YouBike。'},d12:{title:'高雄 · 港都全览（上）',subtitle:'住：高雄 盐埕 / 美丽岛',color:'#2c3e6b',colorLight:'#e8ecf7',items:[{time:'09:00',icon:'🌊',name:'莲池潭',desc:'高雄最大淡水湖，以宏伟「龙虎塔」著名——入龙口、出虎口，可从两座宝塔内部楼梯穿行，寓意转运。春秋宫、启明堂等庙宇林立湖畔，是台湾道教文化最密集地方，免费参观。',tags:['必去','文化','免费']},{time:'11:30',icon:'⛴',name:'旗津岛渡轮',desc:'从鼓山轮渡站搭渡轮至旗津（约10分钟，来回票价50台币）。旗津是细长半岛，无汽车，可租YouBike沿旗津海岸公园骑行，吹海风，吃海鲜。',tags:['渡轮','骑行','岛屿']},{time:'13:00',icon:'🦐',name:'旗津海鲜午餐',desc:'旗津老街有大量海鲜餐厅，可点活海鲜现炒。推荐：烤小管、炒蟹脚、生蚝、鱿鱼羹。价格比台北便宜约30–40%。',tags:['必吃','海鲜']},{time:'15:00',icon:'🏖',name:'旗津海水浴场',desc:'高雄最大海滩，天气好时可走到沙滩吹风，感受南台湾阳光与海风。旗津彩虹教堂附近也是网红打卡点。'},{time:'16:30',icon:'⛴',name:'渡轮返鼓山',desc:'搭渡轮返回鼓山，顺道参观打狗英国领事馆文化园区（日据时期领事馆旧址，有高雄港全景），门票100台币。',tags:['历史','景观']},{time:'18:30',icon:'🚇',name:'美丽岛捷运站',desc:'全球十大最美地铁站之一！由意大利艺术家设计，直径30米圆形玻璃穹顶「光之穹顶」由数千片彩色玻璃拼成，描绘台湾历史与生命轮回，全天免费参观，晚上灯光效果更震撼。',tags:['必看','免费','世界级']}],tip:'💡 旗津建议中午前抵达，海鲜午餐性价比最高。美丽岛站「光之穹顶」每日整点有特别灯光展演，可查询时间。'},d13:{title:'高雄 · 港都全览（下）',subtitle:'住：高雄 盐埕 / 美丽岛',color:'#2c3e6b',colorLight:'#e8ecf7',items:[{time:'09:30',icon:'🎨',name:'驳二艺术特区晨游',desc:'趁清晨人少时再逛驳二，光线柔和，装置艺术与港口工业美感完美融合。可租YouBike沿港边骑行，感受高雄最有活力的一面。',tags:['文创','骑行']},{time:'11:30',icon:'🌉',name:'爱河畔午后',desc:'高雄的母亲河。爱河两岸有步行道和咖啡馆，傍晚可看高雄85大楼倒映水面。附近有光荣码头，可乘爱之船游河。',tags:['散步','景观']},{time:'14:00',icon:'🏛',name:'高雄市立美术馆',desc:'台湾南部规模最大的美术馆，馆藏丰富，户外雕塑公园免费参观。建筑本身融合自然景观，是高雄文艺气息的代表场所。',tags:['艺术','免费户外']},{time:'16:00',icon:'🌅',name:'西子湾夕阳',desc:'高雄最经典的日落地点。西子湾沙滩面向台湾海峡，夕阳沉入海平面的瞬间令人屏息，是高雄人心中最美的日常风景之一。',tags:['夕阳','必看']},{time:'19:00',icon:'🌙',name:'六合夜市',desc:'高雄最著名夜市，位于捷运美丽岛站步行5分钟处。必吃：木瓜牛奶（高雄版最正宗）、海产粥、烤玉米、生炒花枝。约1小时游逛。',tags:['夜市','必吃']}],tip:'💡 高雄YouBike共享单车发达，结合捷运是最经济出行方式。悠游卡可直接刷YouBike。'},d14:{title:'高雄 → 垦丁 · 台湾最南端',subtitle:'住：垦丁大街附近',color:'#1a6b8a',colorLight:'#d6eef5',items:[{time:'09:00',icon:'🚌',name:'高雄→垦丁',desc:'从高雄左营搭统联客运或墾丁快线至垦丁（约1.5–2小时，票价约270台币）。或与同行朋友合租计程车包车（约1,200台币/次），更灵活自由。',tags:['客运/包车']},{time:'11:00',icon:'🏖',name:'南湾海滩·戏水浮潜',desc:'垦丁最热门的海滩，水清沙白，是台湾最佳浮潜地之一。可在沙滩租用浮潜装备（约300–500台币），珊瑚礁鱼群清晰可见。5–6月水温约26°C，浮潜最佳季节。',tags:['必去','浮潜','海滩']},{time:'14:00',icon:'🏛',name:'鹅銮鼻公园·台湾最南端',desc:'台湾本岛最南端，鹅銮鼻灯塔是台湾光力最强的灯塔，1882年建造，白色灯塔矗立在珊瑚礁台地上。公园内有各种热带植物与地形，门票60台币。',tags:['历史地标','必打卡']},{time:'16:00',icon:'🪸',name:'龙坑生态保护区',desc:'台湾最重要的珊瑚礁生态系统之一，奇岩怪石与蓝色海洋相互映衬，地形壮阔原始。须提前预约，每日限定人数，免费但需申请通行证。',tags:['生态','预约制']},{time:'18:30',icon:'🌅',name:'猫鼻头公园·夕阳',desc:'台湾海峡与巴士海峡的交界处，是观赏垦丁日落的绝佳地点。巨大的珊瑚礁岩与染红的天空，是垦丁最具代表性的风景之一。',tags:['夕阳','免费']},{time:'20:00',icon:'🌙',name:'垦丁大街夜市',desc:'垦丁唯一的夜市，虽然规模不大，却有浓厚的南台湾海边小镇气息。必吃：野猪肉饭盒（招牌）、烤玉米、新鲜椰子汁、芒果冰。夜市从傍晚开始，气氛轻松欢快。',tags:['夜市','必吃']}],tip:'💡 垦丁是台湾最南端的国家公园，交通较不便，建议在垦丁租摩托车或电动车（约400台币/天）自由移动。龙坑生态区须提前网络申请通行证，建议出发前完成。'},d15:{title:'垦丁最后一天 → 返台北',subtitle:'当日离台',color:'#2d6a4f',colorLight:'#e8f5ef',items:[{time:'07:30',icon:'🌅',name:'垦丁清晨海景',desc:'住在垦丁的最大好处——清晨的海浪声。趁出发前在南湾或白沙湾海滩散个步，看一眼太平洋的清晨，深吸一口南台湾的海风。',tags:['晨景']},{time:'09:00',icon:'🚌',name:'垦丁→高雄左营',desc:'搭客运返回高雄左营（约1.5小时），注意提前查好班次时间，建议提前网络购票。',tags:['客运','提前买票']},{time:'11:00',icon:'🚄',name:'高雄→台北',desc:'搭高铁左营站北上台北（约1.5小时，票价843台币）。务必提前订票，旺季一票难求。',tags:['高铁','提前订票']},{time:'13:00',icon:'🛍',name:'台北最后采购',desc:'回台北还有时间的话，可以在台北车站地下街B2/B3，或西门町SOGO最后血拼一波。凤梨酥（犁记、佳德、微热山丘）、牛轧糖、台湾高山茶都是绝佳伴手礼。',tags:['购物','伴手礼']},{time:'15:00',icon:'🚇',name:'前往桃园机场',desc:'建议航班前3小时（国际线）出发。机场捷运从台北车站直达T1约35分钟，T2约40分钟。悠游卡可直接刷机场捷运。',tags:['机场捷运']},{time:'17:00',icon:'✈️',name:'桃园机场 · 平安返程',desc:'从台湾最南端的海浪到桃园机场，西海岸之旅圆满收官。花莲的峡谷、七星潭的海湾，都已悄悄写进下次的愿望清单。🙏 一路顺风！'}],tip:'💡 高铁票强烈建议提前在台湾高铁官网（thsrc.com.tw）预订。垦丁→高雄的客运班次非旺季较少，建议提早出发留余裕时间。'}};
+
+function openDrawer(id){
+  const d=DAYS[id];if(!d)return;
+  document.getElementById('drawer-badge').textContent=id.replace('d','D');
+  document.getElementById('drawer-badge').style.background=d.color;
+  document.getElementById('drawer-title').textContent=d.title;
+  document.getElementById('drawer-subtitle').textContent=d.subtitle;
+  const dr=document.getElementById('drawer');
+  dr.style.setProperty('--c',d.color);
+  dr.style.setProperty('--cl',d.colorLight);
+  let html='';
+  d.items.forEach((item,i)=>{
+    const isLast=i===d.items.length-1;
+    html+=`<div class="dtl-item"><div class="dtl-left"><div class="dtl-dot">${item.icon}</div>${!isLast?'<div class="dtl-vline"></div>':''}</div><div class="dtl-right"><div class="dtl-time" style="color:${d.color}">${item.time}</div><div class="dtl-name">${item.name}</div><div class="dtl-desc">${item.desc}</div>${item.tags?`<div class="dtl-tags">${item.tags.map(t=>`<span class="dtl-tag">${t}</span>`).join('')}</div>`:''}</div></div>`;
+  });
+  if(d.tip)html+=`<div class="dtl-tip">${d.tip}</div>`;
+  document.getElementById('drawer-body').innerHTML=html;
+  document.getElementById('overlay').classList.add('active');
+  dr.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeDrawer(){
+  document.getElementById('overlay').classList.remove('active');
+  document.getElementById('drawer').classList.remove('active');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
+document.querySelectorAll('a.badge[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
